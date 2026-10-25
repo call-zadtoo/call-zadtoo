@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global safety net - default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Users profiles
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Call Logs
+    match /call_logs/{logId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+
+    // Hotlinks
+    match /hotlinks/{hotlinkId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+  }
+}

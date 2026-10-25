@@ -1,0 +1,6 @@
+{
+  "name": "Hotliney - خط خدمة عملائك بقى رابطًا",
+  "description": "منصة مكالمات واردة تبدأ من رابط. شارك رابطًا واحدًا والعميل يتحدث مباشرة من المتصفح بدون تثبيت أي تطبيق مع مكالمات تفاعلية وسجل كامل.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

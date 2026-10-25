@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile authenticated via Google",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique Google user ID" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User full name" },
+        "photoURL": { "type": "string", "description": "Google profile avatar URL" },
+        "plan": { "type": "string", "enum": ["free_unlimited"], "description": "Active plan" },
+        "createdAt": { "type": "string", "description": "Account registration timestamp" }
+      },
+      "required": ["uid", "email"]
+    },
+    "CallLog": {
+      "title": "CallLog",
+      "description": "Log of an inbound call",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Call ID" },
+        "callerName": { "type": "string", "description": "Caller identifier" },
+        "callerSource": { "type": "string", "description": "Source campaign or QR" },
+        "startTime": { "type": "string", "description": "Time call started" },
+        "durationSeconds": { "type": "number", "description": "Duration in seconds" },
+        "status": { "type": "string", "enum": ["completed", "missed", "transferred"], "description": "Call completion status" },
+        "agentName": { "type": "string", "description": "Agent or AI handling the call" },
+        "department": { "type": "string", "description": "Target department" }
+      },
+      "required": ["id", "callerName", "durationSeconds", "status"]
+    },
+    "Hotlink": {
+      "title": "Hotlink",
+      "description": "Custom call link",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "description": "Unique slug for the link" },
+        "brandName": { "type": "string", "description": "Brand name" },
+        "responderType": { "type": "string", "enum": ["team", "ai", "hybrid"], "description": "Who answers the call" },
+        "userId": { "type": "string", "description": "Owner Google UID" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["slug", "brandName", "responderType"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profiles stored by Google UID"
+    },
+    "/call_logs/{logId}": {
+      "schema": { "$ref": "#/entities/CallLog" },
+      "description": "History of all inbound calls"
+    },
+    "/hotlinks/{hotlinkId}": {
+      "schema": { "$ref": "#/entities/Hotlink" },
+      "description": "Custom call links created by users"
+    }
+  }
+}
