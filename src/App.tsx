@@ -221,8 +221,8 @@ export default function App() {
 
                   {/* Main Headline for أبوسليم | ABUSALIM */}
                   <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.25]">
-                    خط خدمة عملائك <br />
-                    بقى <span className="text-transparent bg-clip-text bg-gradient-to-l from-orange-400 via-orange-500 to-amber-400">رابطًا مجانيًا مع أبوسليم.</span>
+                    استقبال مكالمات عملائك <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-l from-orange-400 via-orange-500 to-amber-400">أصبح مجانيًا مع أبوسليم!</span>
                   </h1>
 
                   {/* Subtitle description */}
