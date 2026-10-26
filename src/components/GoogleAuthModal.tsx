@@ -3,12 +3,15 @@ import { Check, X, Shield, Sparkles, LogOut, User, AlertCircle, RefreshCw } from
 import { AbusalimLogo } from './AbusalimLogo';
 import { signInWithGoogleReal, signOutReal } from '../lib/firebase';
 
+import { UserRole } from '../types/roles';
+
 export interface GoogleUser {
   id: string;
   name: string;
   email: string;
   avatar: string;
   plan: 'free_unlimited';
+  role?: UserRole;
   isFirebaseLive?: boolean;
 }
 
@@ -16,6 +19,8 @@ interface GoogleAuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentUser: GoogleUser | null;
+  currentRole?: UserRole;
+  onSelectRole?: (role: UserRole) => void;
   onSignIn: (user: GoogleUser) => void;
   onSignOut: () => void;
 }
@@ -24,6 +29,8 @@ export const GoogleAuthModal: React.FC<GoogleAuthModalProps> = ({
   isOpen,
   onClose,
   currentUser,
+  currentRole = 'subscriber',
+  onSelectRole,
   onSignIn,
   onSignOut,
 }) => {
@@ -141,12 +148,12 @@ export const GoogleAuthModal: React.FC<GoogleAuthModalProps> = ({
               </div>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800 text-xs text-slate-300 text-right space-y-1">
-              <div className="flex justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 text-xs text-slate-300 text-right space-y-2.5">
+              <div className="flex justify-between items-center">
                 <span className="text-slate-400">حالة الاشتراك:</span>
                 <span className="text-emerald-400 font-bold">مجاني 100% بدون قيود</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <span className="text-slate-400">النطاق المعتمد:</span>
                 <span className="text-orange-400 font-mono" dir="ltr">call.zadtoo.com</span>
               </div>

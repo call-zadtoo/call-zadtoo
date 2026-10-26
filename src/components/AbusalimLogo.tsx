@@ -1,19 +1,24 @@
 import React from 'react';
 
-export const AbusalimLogo: React.FC<{ className?: string; size?: 'sm' | 'md' | 'lg' }> = ({ 
+export const AbusalimLogo: React.FC<{ 
+  className?: string; 
+  size?: 'sm' | 'md' | 'lg';
+  showTagline?: boolean;
+}> = ({ 
   className = '', 
-  size = 'md' 
+  size = 'md',
+  showTagline = true
 }) => {
   const iconSizes = {
-    sm: 'w-6 h-6',
-    md: 'w-9 h-9',
-    lg: 'w-11 h-11'
+    sm: 'w-7 h-7',
+    md: 'w-10 h-10',
+    lg: 'w-12 h-12'
   };
 
   const textSizes = {
     sm: 'text-base font-bold',
-    md: 'text-xl font-black',
-    lg: 'text-2xl font-black'
+    md: 'text-lg sm:text-xl font-black',
+    lg: 'text-xl sm:text-2xl font-black'
   };
 
   const subSizes = {
@@ -24,28 +29,66 @@ export const AbusalimLogo: React.FC<{ className?: string; size?: 'sm' | 'md' | '
 
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`} dir="rtl">
-      {/* Visual Stylized Logo: Custom Shield / Audio Wave connection in Orange & Navy */}
+      {/* Official Poster Logo Icon: Stylized Curved "A" in Cyan & Emerald */}
       <div className={`relative ${iconSizes[size]} flex items-center justify-center shrink-0`}>
-        <div className="w-full h-full rounded-2xl bg-gradient-to-tr from-orange-600 via-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/25 p-1.5 border border-orange-400/40">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full text-white">
-            {/* Handset phone combined with smile/link */}
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        <div className="w-full h-full rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 flex items-center justify-center p-1.5 border border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+          <svg viewBox="0 0 36 36" fill="none" className="w-full h-full">
+            <defs>
+              <linearGradient id="cyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#0284C7" />
+                <stop offset="100%" stopColor="#00D2FF" />
+              </linearGradient>
+              <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#10B981" />
+                <stop offset="100%" stopColor="#00E676" />
+              </linearGradient>
+            </defs>
+            {/* Left curved wing of "A" in vibrant cyan */}
+            <path
+              d="M10 28 C9 22, 11 14, 18 8 C18 12, 14 18, 14 26 C13 28, 11 28, 10 28 Z"
+              fill="url(#cyanGrad)"
+            />
+            {/* Right curved wing of "A" in vibrant emerald */}
+            <path
+              d="M18 8 C25 14, 27 22, 26 28 C25 28, 23 28, 22 26 C22 18, 18 12, 18 8 Z"
+              fill="url(#greenGrad)"
+            />
+            {/* Center cross connection */}
+            <path
+              d="M13 21 C16 19, 20 19, 23 21"
+              stroke="#FFFFFF"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            {/* Dynamic dot / voice pulse */}
+            <circle cx="18" cy="14" r="2.2" fill="#00D2FF" />
           </svg>
         </div>
-        <span className="absolute -bottom-1 -left-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-950 flex items-center justify-center">
-          <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+        {/* Active online pulse badge */}
+        <span className="absolute -bottom-0.5 -left-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-slate-950 flex items-center justify-center">
+          <span className="w-1 h-1 rounded-full bg-white"></span>
         </span>
       </div>
 
-      <div className="flex flex-col text-right">
+      <div className="flex flex-col text-right min-w-0">
         <div className={`tracking-tight text-white flex items-center gap-1.5 leading-none ${textSizes[size]}`}>
-          <span className="text-orange-500">أبوسليم</span>
-          <span className="text-slate-400 text-xs font-mono font-medium tracking-wider">| ABUSALIM</span>
+          <span className="font-black text-white">أبوسليم</span>
+          <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/40 text-emerald-400 text-[10px] sm:text-xs font-black tracking-wider">
+            كول
+          </span>
+          <span className="text-cyan-400 text-[10px] sm:text-xs font-mono font-bold tracking-widest hidden sm:inline" dir="ltr">
+            ABUSALIM — CALL —
+          </span>
         </div>
-        <div className={`text-slate-400 font-medium mt-1 flex items-center gap-1 ${subSizes[size]}`}>
-          <span>رابط مكالماتك الذكي</span>
-          <span className="text-emerald-400 font-bold bg-emerald-500/10 px-1 rounded border border-emerald-500/20">مجاناً 100%</span>
-        </div>
+
+        {showTagline && (
+          <div className={`text-slate-300 font-medium mt-1 flex items-center gap-1.5 ${subSizes[size]}`}>
+            <span className="text-cyan-300 font-bold">موقعك .. يتكلم مع عملائك</span>
+            <span className="text-amber-300 font-extrabold bg-amber-500/15 px-1 py-0.2 rounded border border-amber-400/30 text-[9px] sm:text-[10px] hidden sm:inline">
+              مجاناً 100%
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

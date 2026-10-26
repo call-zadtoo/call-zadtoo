@@ -42,6 +42,29 @@
         "createdAt": { "type": "string", "description": "Creation timestamp" }
       },
       "required": ["slug", "brandName", "responderType"]
+    },
+    "WidgetConfig": {
+      "title": "WidgetConfig",
+      "description": "Multi-channel widget configuration for subscriber",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Widget ID" },
+        "userId": { "type": "string", "description": "Owner Google UID" },
+        "brandName": { "type": "string", "description": "Business or brand name" },
+        "slug": { "type": "string", "description": "Call link slug" },
+        "callEnabled": { "type": "boolean", "description": "Abusalim web call enabled" },
+        "whatsappEnabled": { "type": "boolean", "description": "WhatsApp enabled" },
+        "whatsappNumber": { "type": "string", "description": "WhatsApp phone number" },
+        "whatsappMessage": { "type": "string", "description": "Pre-filled WhatsApp message" },
+        "isZadWhatsapp": { "type": "boolean", "description": "Flag for Zad WhatsApp integration" },
+        "telegramEnabled": { "type": "boolean", "description": "Telegram enabled" },
+        "telegramUsername": { "type": "string", "description": "Telegram username" },
+        "position": { "type": "string", "enum": ["bottom-right", "bottom-left"], "description": "Screen position" },
+        "themeColor": { "type": "string", "enum": ["orange", "emerald", "sky", "violet"], "description": "Widget color theme" },
+        "welcomeMessage": { "type": "string", "description": "Greeting popup message" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["userId", "brandName", "slug"]
     }
   },
   "firestore": {
@@ -56,6 +79,10 @@
     "/hotlinks/{hotlinkId}": {
       "schema": { "$ref": "#/entities/Hotlink" },
       "description": "Custom call links created by users"
+    },
+    "/widgets/{widgetId}": {
+      "schema": { "$ref": "#/entities/WidgetConfig" },
+      "description": "Multi-channel widget configurations stored per subscriber"
     }
   }
 }
